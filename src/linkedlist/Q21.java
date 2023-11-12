@@ -8,25 +8,24 @@ public class Q21 {
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode();
         ListNode cur = dummy;
-        ListNode n1 = list1;
-        ListNode n2 = list2;
-        while (n1 != null && n2 != null) {
-            if(n1.val > n2.val){
-                cur.next = n2;
-                n2 = n2.next;
-            }else {
-                cur.next = n1;
-                n1 = n1.next;
+        while (list1 != null && list2 != null) {
+            if (list1.val > list2.val) {
+                cur.next = list2;
+                list2 = list2.next;
+
+            } else {
+                cur.next = list1;
+                list1 = list1.next;
+
             }
             cur = cur.next;
         }
-        if(n1 != null){
-            cur.next = n1;
-        }else {
-            cur.next = n2;
+        if (list1 != null) {
+            cur.next = list1;
+        } else {
+            cur.next = list2;
         }
-        return dummy;
-
+        return dummy.next;
     }
 
     public static void main(String[] args) {

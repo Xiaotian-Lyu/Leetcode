@@ -2,17 +2,20 @@ package linkedlist;
 import model.ListNode;
 import model.ListNode141;
 
+import javax.swing.text.FlowView;
+
 
 public class Q141 {
     public boolean hasCycle(ListNode head){
-        if(head == null){
+        if(head == null ){
             return false;
         }
-        ListNode fast = head, slow =head;
-        while (fast != null && fast.next != null){
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && slow != null){
             fast = fast.next.next;
             slow = slow.next;
-            if(fast == slow){
+            if(slow == fast){
                 return true;
             }
         }
