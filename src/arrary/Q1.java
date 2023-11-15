@@ -5,16 +5,15 @@ import java.util.Map;
 
 public class Q1 {
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer,Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[]{map.get(complement), i};
+            if(map.containsKey(complement)){
+                return new int[]{map.get(complement),i};
             }
-            map.put(nums[i], i);
+            map.put(nums[i],i);
         }
         return null;
-
 
 //        Map<Integer,Integer> map = new HashMap<>();
 //        for (int i = 0; i < nums.length; i++) {
