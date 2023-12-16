@@ -1,8 +1,5 @@
 package linkedlist;
 import model.ListNode;
-import model.ListNode141;
-
-import javax.swing.text.FlowView;
 
 
 public class Q141 {
