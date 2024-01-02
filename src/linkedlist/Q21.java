@@ -2,6 +2,8 @@ package linkedlist;
 
 import model.ListNode;
 
+import java.util.LinkedList;
+
 public class Q21 {
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode();
