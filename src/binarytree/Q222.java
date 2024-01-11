@@ -9,7 +9,6 @@ public class Q222 {
 
         if(heightOfLeft == heightOfRight){
             //in this case left side is complete B-Tree;
-            //return (1 << heightOfLeft + 1 ) -1 + countNodes(root.right);
             //return 1 << heightOfLeft + countNodes(root.right); ??左移的优先级高于+ 但是没有括号报错
             return (1 << heightOfLeft) + countNodes(root.right);
         }else {

@@ -13,6 +13,17 @@ public class Q530 {
     }
 
     public void inOrderTraversal(TreeNode node) {
+        //recursion 的出口？？？？？可以
+        //if(node == null) return;
+        //inOrderTraversal(node.left);//recursion condition
+        //calculate the difference of each node
+        //result = Math.min(result,Math.abs(node.val-pre));
+        //update the pre
+        //pre = node.val;
+        //inOrderTraversal(node.right);//recursion condition
+
+        //可以先找左边再找右边 也可以互换
+        //为什么不直接return？？可以
         if (node.left != null) inOrderTraversal(node.left);//recursion condition
         //calculate the difference of each node
         result = Math.min(result,Math.abs(node.val-pre));
