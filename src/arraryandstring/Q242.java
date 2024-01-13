@@ -1,4 +1,4 @@
-package string;
+package arraryandstring;
 
 public class Q242 {
     public boolean isAnagram(String s, String t) {

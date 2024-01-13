@@ -1,4 +1,4 @@
-package arrary;
+package arraryandstring;
 
 public class Q169 {
     public int majorityElement(int[] nums) {

@@ -1,4 +1,4 @@
-package string;
+package arraryandstring;
 
 public class Q409 {
     public int longestPalindrome(String s) {

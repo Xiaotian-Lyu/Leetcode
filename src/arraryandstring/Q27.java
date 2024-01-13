@@ -1,4 +1,4 @@
-package arrary;
+package arraryandstring;
 
 public class Q27 {
     public int removeElement(int[] nums, int val) {

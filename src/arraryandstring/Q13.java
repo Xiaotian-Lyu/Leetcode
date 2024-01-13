@@ -1,4 +1,4 @@
-package arrary;
+package arraryandstring;
 
 public class Q13 {
     public int romanToInt(String s) {

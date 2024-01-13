@@ -1,4 +1,4 @@
-package arrary;
+package arraryandstring;
 
 public class Q121 {
     public int maxProfit(int[] prices) {

@@ -1,4 +1,4 @@
-package arrary;
+package arraryandstring;
 
 public class Q283 {
     public void moveZeroes(int[] nums) {

@@ -1,4 +1,4 @@
-package arrary;
+package arraryandstring;
 
 public class Q58 {
     public int lengthOfLastWord(String s) {
