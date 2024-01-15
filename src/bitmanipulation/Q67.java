@@ -14,7 +14,7 @@ public class Q67 {
 
             // 如果a的位数还没有遍历完，将a当前位的值加到sum中
             if (i >= 0) {
-                sum += a.charAt(i--) - '0';
+                sum += a.charAt(i--) - '0';//charAt拿到的是字符，转成数字就是减去0
             }
 
             // 如果b的位数还没有遍历完，将b当前位的值加到sum中

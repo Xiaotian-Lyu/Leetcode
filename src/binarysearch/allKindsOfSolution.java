@@ -14,7 +14,10 @@ public class allKindsOfSolution {
         return -1;//不是left 因为上面第10行找到了target 就返回了需要的值 出了while循环后 都找不到说明不存在！！！
     }
 
-    //find the left side of target
+    //find the left side of target （符合条件的最小值）
+    /**
+     * 还有另外一种算法 看第69题
+     */
     public int left_bound(int[] nums, int target) {
         int left = 0;
         int right = nums.length;//开区间
@@ -32,7 +35,7 @@ public class allKindsOfSolution {
         */
     }
 
-    //find the right side of target
+    //find the right side of target（符合条件的最大值）
     public int right_bound(int[] nums, int target) {
         int left = 0;
         int right = nums.length;//开区间
