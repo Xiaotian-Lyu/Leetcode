@@ -5,8 +5,8 @@ import java.util.Map;
 public class Q205 {
     public boolean isIsomorphic(String s, String t) {
         //create two arrays to store letters
-        int map1[] = new int[256];//s
-        int map2[] = new int[256];//t
+        int[] map1 = new int[256];//s
+        int[] map2 = new int[256];//t
 
         if(s.length() != t.length()) return false;
         //traversal the length of s, to check if correspond to t
