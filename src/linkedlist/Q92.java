@@ -25,9 +25,9 @@ public class Q92 {
 
         for(int i = 1; i <= right - left ; i++){//count the time need to convert
             cur.next = future.next;
-            future.next = pre.next;//cur but cur will be change pre.next won't
+            future.next = pre.next;//cur but cur will be change（cur move to the behind） pre.next won't
             pre.next = future;
-            future = cur.next;//update the future
+            future = cur.next;//update the future 注意：pre不用动 因为每次的操作都是把后面的值移到前面来（pre.next）
         }
 
         return dummy.next;

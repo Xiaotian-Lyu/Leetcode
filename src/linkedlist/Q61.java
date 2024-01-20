@@ -22,7 +22,7 @@ public class Q61 {
 
         //find the newTail: the listNode before K
         ListNode newTail = head;//initialize the newTail
-        for(int i = 1; i <= length-k-1 ; i++){//记得要走的步数是长度-k -1 从末尾往前走
+        for(int i = 1; i <= length-k-1 ; i++){//记得要走的步数是长度-k -1（head已经算走了一步了）  ;从末尾往前移动
             newTail = newTail.next;
         }
 
