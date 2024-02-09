@@ -7,8 +7,7 @@ public class Q105 {
     // all the methods will need
     // a hashmap to store the indexes of inorder values
     Map<Integer,Integer> map = new HashMap<>();
-    // initial a preIndex ---- to find the root in preorder
-    int preIndex = 0;
+
 
     public TreeNode buildTree(int[] preorder, int[] inorder){
         for(int i = 0; i< preorder.length;i++){//错误写法：i< preorder.length()
@@ -17,6 +16,10 @@ public class Q105 {
         return helper(preorder,0,preorder.length-1);//preorder-- find the root
         //错误写法：helper(preorder,preIndex,preorder.length-1)
     }
+
+    // initial a preIndex ---- to find the root in preorder
+    //不能写在方法里面，不然一直会初始化为0；
+    int preIndex = 0;
 
     public TreeNode helper(int[] preorder,int left ,int right){
         //记得写recursion的出口
