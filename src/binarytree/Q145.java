@@ -20,7 +20,7 @@ public class Q145 {
 
         while(!stack.isEmpty()){//错误写法!stack.isEmpty
             TreeNode node = stack.pop();
-            res.addFirst(node.val);
+            res.addFirst(node.val);//addFirst 只有LinkedList 有
 
             //check and push:left - right
             if(node.left != null){
