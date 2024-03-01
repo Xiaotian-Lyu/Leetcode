@@ -56,6 +56,10 @@ public class allKindsOfSolution {
         return left - 1;//left = mid + 1  mid就是要找的值
         /**
          * 为什么返回left -1;
+         * 因为我们对 left 的更新必须是 left = mid + 1，
+         * 就是说 while 循环结束时，nums[left] 一定不等于 target 了，
+         * 而 nums[left-1] 可能是 target。
+         *
          * 1.寻找符合条件的最大值的时候 需要不断更新左边界left = mid + 1;
          * 2.当最后一次mid == target 的时候，还是会更新 left = mid + 1；
          * 3.更新完之后不符合条件了 就不进入while循环 这个时候left = right

@@ -26,16 +26,21 @@ public class findPeak {
     }
 
     static int findPeak(int[] arr) {
-        int left = 0, right = arr.length - 1; // mid = left + 1 = arr.length??, left = right = arr.length - 1
-        // left == right
-        // right的最大值是arr.length-1, left最大值也是arr.length - 1
+        int left = 0, right = arr.length - 1;
+        /**
+         * 1。peak肯定存在：如果一直往左走或者一直往右走 则return 0 或者 arr.length - 1
+         * 2。nums[mid] = nums[mid + 1] 中等号无所谓 可以加到任何一边 也可以不加
+         * 3。left == right 的时候 就是peak 直接return 就行
+         */
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (arr[mid] > arr[mid + 1]) right = mid;
-            else left = mid + 1;
+            if( arr[mid] < arr[mid + 1]){
+                left = mid + 1;
+            }else if( arr[mid] > arr[mid + 1]){
+                right = mid;
+            }
         }
-        //肯定存在peak 因为 left 一直往右边移动说明 最右边的就是 peak
-        //就可以直接返回right 的值 = arr.length - 1
+
         return left;
     }
 }
