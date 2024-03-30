@@ -5,7 +5,8 @@ import java.util.*;
 public class Q310 {
     class Solution {
         public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-            //n==1?
+            //n==1
+            //Given a tree of n nodes labelled from 0 to n - 1
             if(n==1){
                 List<Integer> res = new ArrayList<>();
                 res.add(0);
@@ -14,7 +15,7 @@ public class Q310 {
 
             //map store : node neighbors
             //错误写法：HashMap<Integer,Hashset<Integer>> map = new HashMap<>();
-            Map<Integer, HashSet<Integer>> map = new HashMap<>();
+            Map<Integer,HashSet<Integer>> map = new HashMap<>();
             for(int[] edge : edges){
                 //方法：putIfAbsent
                 map.putIfAbsent(edge[0],new HashSet<>());
@@ -33,7 +34,7 @@ public class Q310 {
                 if(map.get(e).size() == 1) queue.add(e);
             }
 
-            List<Integer> res = new ArrayList<>(queue);//为神马要定义在外面
+            List<Integer> res = new ArrayList<>(queue);//while 循环结束后能返回
             //BFS
             while(!queue.isEmpty()){
                 //refresh the queue
@@ -51,8 +52,6 @@ public class Q310 {
                         }
                     }
                 }
-
-
             }
             //queue is Empty the res = last leaf nodes
             return res;
