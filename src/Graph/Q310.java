@@ -29,6 +29,7 @@ public class Q310 {
             Queue<Integer> queue = new LinkedList<>();
 
             //方法：map.keySet()
+            //int 和 integer 都可以
             for(Integer e : map.keySet()){
                 //错误写法：if(map.get[e].size() == 0) queue.add(e);
                 if(map.get(e).size() == 1) queue.add(e);
