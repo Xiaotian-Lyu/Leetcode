@@ -11,6 +11,8 @@ public class Q542 {
             int m = mat.length, n = mat[0].length;
             boolean[][] visited = new boolean[m][n];
             Queue<int[]> queue = new LinkedList<>();
+            //Queue<int[]> queue 只需要坐标[{1,0},{-1,0},{0,1},{0,-1}];
+            //boolean[][] visited 需要对应坐标的保留的数值
 
             for(int i = 0; i < m ; i++){
                 for(int j = 0; j < n ; j++){
