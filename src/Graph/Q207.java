@@ -5,47 +5,46 @@ import java.util.*;
 public class Q207 {
     class Solution2 {
         public boolean canFinish(int numCourses, int[][] prerequisites) {
-            // 创建邻接表，用 Map 表示，值为 Set
-            Map<Integer, Set<Integer>> adjacencyList = new HashMap<>();
-            for (int i = 0; i < numCourses; i++) {
-                adjacencyList.put(i, new HashSet<>());
+            //create the adjacency map
+            Map<Integer,Set<Integer>> adjacencyMap = new HashMap<>();
+            for(int i = 0; i< numCourses; i++){
+                adjacencyMap.put(i, new HashSet<>());//Map 放的key 是preCourse
             }
 
-            // 统计每门课程的入度
+            //Count the Indegree of each class
             int[] indegree = new int[numCourses];
 
-            // 构建邻接表和入度数组
-            for (int[] prerequisite : prerequisites) {
+            //put the data into the map and array
+            for(int[] prerequisite:prerequisites){
                 int course = prerequisite[0];
-                int prerequisiteCourse = prerequisite[1];
-                adjacencyList.get(prerequisiteCourse).add(course);
+                int preCourse = prerequisite[1];
+                adjacencyMap.get(preCourse).add(course);
                 indegree[course]++;
             }
 
-            // 将入度为0的课程加入队列作为起始点
+            //put the indegree = 0 into a queue
             Queue<Integer> queue = new LinkedList<>();
-            for (int i = 0; i < numCourses; i++) {
-                if (indegree[i] == 0) {
+            for(int i = 0; i < numCourses; i++){
+                if(indegree[i] == 0){
                     queue.offer(i);
                 }
             }
 
-            // 记录已学习的课程数量
-            int learnedCourses = 0;
-            while (!queue.isEmpty()) {
+            //count all the course number
+            int learnedcourse = 0;
+            while(!queue.isEmpty()){
                 int course = queue.poll();
-                learnedCourses++;
-                // 将当前课程的后继课程的入度减一，若入度为0，则加入队列
-                for (int nextCourse : adjacencyList.get(course)) {
+                learnedcourse++;
+
+                for(int nextCourse : adjacencyMap.get(course)){
                     indegree[nextCourse]--;
-                    if (indegree[nextCourse] == 0) {
+                    if(indegree[nextCourse] == 0){
                         queue.offer(nextCourse);
                     }
                 }
             }
 
-            // 若所有课程都能学习，则返回true；否则返回false
-            return learnedCourses == numCourses;
+            return learnedcourse == numCourses;
         }
     }
 
