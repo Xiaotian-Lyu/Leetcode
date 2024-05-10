@@ -3,6 +3,53 @@ package Graph;
 import java.util.*;
 
 public class Q207 {
+    class Solution3 {
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            //adjacency map - preCourse Course
+            //错误写法：int[integer],set<Integer>
+            Map<Integer,Set<Integer>> adjacencyMap = new HashMap<>();
+            for(int i = 0; i < numCourses; i++){
+                adjacencyMap.put(i,new HashSet<>());//?
+            }
+
+            //array - indegree of the class
+            //错误写法：int<Integer> indegree = new int[];
+            int[] indegree = new int[numCourses];
+
+            //put all data
+            for(int[] prerequisite: prerequisites){
+                int course = prerequisite[0];
+                int preCourse = prerequisite[1];
+                //注意：map.get之后是一个set
+                adjacencyMap.get(preCourse).add(course);
+                indegree[course]++;
+            }
+
+            //queue - indegree == 0
+            Queue<Integer> queue = new LinkedList<>();
+            for(int i = 0; i < numCourses; i++){
+                if(indegree[i] == 0){
+                    queue.offer(i);
+                }
+            }
+
+            //count the can finished course - poll the queue and check the nextclass
+            int finishedCourse = 0;
+            while(!queue.isEmpty()){
+                int canTakeCourse = queue.poll();
+                finishedCourse++;
+
+                for(int nextCourse : adjacencyMap.get(canTakeCourse)){
+                    indegree[nextCourse]--;
+                    if(indegree[nextCourse] == 0){
+                        queue.offer(nextCourse);
+                    }
+                }
+            }
+            return finishedCourse == numCourses;
+        }
+    }
+
     class Solution2 {
         public boolean canFinish(int numCourses, int[][] prerequisites) {
             //create the adjacency map
