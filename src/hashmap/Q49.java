@@ -32,4 +32,24 @@ public class Q49 {
              */
         }
     }
+    class Solution2 {
+        public List<List<String>> groupAnagrams(String[] strs) {
+            Map<String, List<String>> map = new HashMap<>();
+            for (String str : strs) {
+                char[] chars = str.toCharArray();
+                Arrays.sort(chars);
+                String pattern = Arrays.toString(chars);
+                map.putIfAbsent(pattern, new ArrayList<>());
+                map.get(pattern).add(str);
+            }
+            return new ArrayList<>(map.values());
+        }
+        /**
+         O(n * m * log m)
+         n is the number of strings in the input array.
+         m is the maximum length of a string in the input array.
+         log m - time of sort
+         */
+
+    }
 }
