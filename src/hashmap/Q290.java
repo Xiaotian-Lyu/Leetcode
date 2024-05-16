@@ -1,8 +1,7 @@
-package hashtable;
+package hashmap;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Q290 {
     public boolean wordPattern(String pattern, String str) {

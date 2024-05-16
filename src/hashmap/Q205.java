@@ -1,6 +1,4 @@
-package hashtable;
-
-import java.util.Map;
+package hashmap;
 
 public class Q205 {
     public boolean isIsomorphic(String s, String t) {

@@ -1,4 +1,4 @@
-package hashtable;
+package hashmap;
 
 public class Q383 {
     public boolean canConstruct(String ransomNote, String magazine) {
