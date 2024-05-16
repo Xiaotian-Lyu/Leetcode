@@ -45,10 +45,9 @@ public class Q49 {
             return new ArrayList<>(map.values());
         }
         /**
-         O(n * m * log m)
+         O(n∗mlogm)
          n is the number of strings in the input array.
          m is the maximum length of a string in the input array.
-         log m - time of sort
          */
 
     }
