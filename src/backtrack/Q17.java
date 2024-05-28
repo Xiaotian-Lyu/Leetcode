@@ -4,6 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Q17 {
+    /**
+     * Time Complexity
+     * To determine the time complexity, let's consider the process:
+     *
+     * Each digit in the input string can map to 3 or 4 possible letters (2 maps to "abc", 3 maps to "def", 7 maps to "pqrs", etc.).
+     * If the input string digits has length n, and each digit maps to an average of 4 letters, the total number of combinations is 4^n.
+     * Each combination is built in a recursive manner, and building each combination takes O(n) time since we need to traverse the entire length of the combination to append it to the result list.
+     * Therefore, the time/space complexity is: 4^n * n
+     */
     class Solution {
         //array corresbonding - digits and letters
         String[] letters = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
