@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Q77 {
     class Solution {
+        /**
+         *Time complexity:"n choose k"* k
+         *Space complexity: O(k)
+         */
         public List<List<Integer>> combine(int n, int k) {
             List<List<Integer>> res = new ArrayList<>();
             backtrack(n, k, res, new ArrayList<>(), 1);
