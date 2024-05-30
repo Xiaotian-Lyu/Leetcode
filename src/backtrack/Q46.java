@@ -37,6 +37,36 @@ public class Q46 {
             nums[start] = temp;
         }
     }
+    /**
+     * python 解法：
+     * class Solution(object):
+     *     def permute(self, nums):
+     *         """
+     *         :type nums: List[int]
+     *         :rtype: List[List[int]]
+     *         """
+     *         res = []
+     *
+     *         def backtrack(start):
+     *             # exit of the recursion
+     *             if start == len(nums):
+     *                 res.append(nums[:])
+     *                 return
+     *             for i in range(start, len(nums)):
+     *                 nums[start], nums[i] =  nums[i] ,nums[start]  #swap
+     *                 backtrack(start + 1)
+     *                 nums[start], nums[i] =  nums[i] ,nums[start]  #swap back
+     *
+     *         backtrack(0) #不能忘记
+     *         return res
+     *
+     *
+     * """
+     * 时间复杂度
+     * 对于一个包含 𝑛 个元素的列表，总共有 𝑛!种排列，每种排列都需要
+     * 𝑂(𝑛)时间来生成。因而，时间复杂度是 𝑂(n⋅n!)
+     * """
+     */
 }
 
 
