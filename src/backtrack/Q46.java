@@ -6,35 +6,38 @@ import java.util.List;
 public class Q46 {
     public class Solution {
         public List<List<Integer>> permute(int[] nums) {
-            List<List<Integer>> result = new ArrayList<>();
-            backtrack(nums, 0, result);
-            return result;
+            List<List<Integer>> res = new ArrayList<>();
+            backtrack(nums, res, 0);
+            return res;
         }
 
-        private void backtrack(int[] nums, int start, List<List<Integer>> result) {
-            if (start == nums.length) {
-                List<Integer> current = new ArrayList<>();
-                //这一段就是python里的浅保存
+        private void backtrack(int[] nums, List<List<Integer>> res, int start) {
+            //exit of the recursion
+            if (start == nums.length) {//错误写法：cur.length()
+                List<Integer> cur = new ArrayList<>();
                 for (int num : nums) {
-                    current.add(num);
+                    cur.add(num);
                 }
+                res.add(cur);
+                return;//别忘了
+            }
 
-                result.add(current);
-                return;
-            }
             for (int i = start; i < nums.length; i++) {
-                swap(nums, start, i);
-                backtrack(nums, start + 1, result);
-                swap(nums, start, i);
+                swap(i, start, nums);
+                //错误写法：backtrack(nums, res, start + 1, cur);
+                backtrack(nums, res, start + 1);
+                swap(i, start, nums);
             }
+
         }
 
-        private void swap(int[] nums, int i, int j) {
+        private void swap(int i, int start, int[] nums) {
             int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
+            nums[i] = nums[start];
+            nums[start] = temp;
         }
     }
-
-
 }
+
+
+
