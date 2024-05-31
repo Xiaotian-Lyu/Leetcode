@@ -11,6 +11,7 @@ public class Q733 {
     }
 
     //set the direction
+    ////DFS 先找任意一个方向的 1 改成 2 改到四周没有 1 为止； 再去找其他方向的
     int[][] direction = {{-1,0},{0,1},{0,-1},{1,0}};
 
     private void helper(int[][] image, int m, int n, int newcolor, int oldcolor){

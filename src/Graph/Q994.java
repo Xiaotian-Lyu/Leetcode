@@ -26,10 +26,10 @@ public class Q994 {
                 }
             }
 
-            //check count == 0？
+            //check count 先判断又有没有好橘子
             if(count == 0) return 0;
 
-            //pull bad oranges to do the DFS
+            //pull bad oranges to do the BFS
             //错误写法 ：queue.pull();直接pull /写在循环外面也不对
             int[][] dirctions = {{1,0},{0,1},{-1,0},{0,-1}};
 
@@ -38,7 +38,7 @@ public class Q994 {
             //错误写法：queue.hasNext()
             while(!queue.isEmpty()){
                 //add time +1
-                res++;
+                res++;//先写在这里 因为后面要判断count 是否是0 是的话就返回 res
                 int size = queue.size();
 
                 for(int i=0 ;i < size;i++){

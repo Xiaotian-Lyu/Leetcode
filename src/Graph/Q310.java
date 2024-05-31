@@ -35,11 +35,11 @@ public class Q310 {
                 if(map.get(e).size() == 1) queue.add(e);
             }
 
-            List<Integer> res = new ArrayList<>(queue);//while 循环结束后能返回
+            List<Integer> res = new ArrayList<>();//while 循环结束后能返回
             //BFS
             while(!queue.isEmpty()){
                 //refresh the queue
-                res = new ArrayList<>(queue);
+                res = new ArrayList<>(queue);//作用把queue传进去
 
                 //traversal queue BFS
                 int sizes = queue.size();
