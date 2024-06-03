@@ -31,6 +31,17 @@ public class Q721 {
             //traversal all the mail //错误写法keyset
             for(String mail : mailIndexMap.keySet()){
                 int index = mailIndexMap.get(mail);
+                //下面这一步不能写成int rootIndex = uf.parents[index];有例外情况
+                /**
+                 * [["Hanzo","Hanzo2@m.co","Hanzo3@m.co"],
+                 * ["Hanzo","Hanzo4@m.co","Hanzo5@m.co"],
+                 * ["Hanzo","Hanzo0@m.co","Hanzo1@m.co"],
+                 * ["Hanzo","Hanzo3@m.co","Hanzo4@m.co"],
+                 * ["Hanzo","Hanzo7@m.co","Hanzo8@m.co"],
+                 * ["Hanzo","Hanzo1@m.co","Hanzo2@m.co"],
+                 * ["Hanzo","Hanzo6@m.co","Hanzo7@m.co"],
+                 * ["Hanzo","Hanzo5@m.co","Hanzo6@m.co"]]
+                 */
                 int rootIndex = uf.find(index);
                 indexMailMap.putIfAbsent(rootIndex, new ArrayList<>());
                 indexMailMap.get(rootIndex).add(mail);
