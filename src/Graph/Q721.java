@@ -142,7 +142,7 @@ public class Q721 {
 
             public int find(int i){
                 while(parents[i] != i){
-                    parents[i] = parents[parents[i]];
+                    parents[i] = parents[parents[i]];//只是效率上的优化 逻辑可以不用
                     i = parents[i];
                 }
                 return i;
