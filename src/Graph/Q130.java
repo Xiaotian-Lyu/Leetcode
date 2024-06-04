@@ -20,7 +20,7 @@ public class Q130 {
             }
             for(int i = 0; i < m ; i++){
                 for(int j = 0; j < n ; j++){
-                    if(board[i][j] == 'O'){
+                    if(board[i][j] == 'O'){//可以交换顺序吗 可以！因为只遍历一次 只改一次
                         board[i][j] = 'X';
                     }else if(board[i][j] == 'T'){
                         board[i][j] = 'O';
@@ -36,7 +36,7 @@ public class Q130 {
         private void dfs(char[][] board, int i, int j){
             int m = board.length, n = board[0].length;
             //exit of the recursion
-            if(i < 0 || j < 0 || i >= m || j >= n || board[i][j] != 'O') return;
+            if(i < 0 || j < 0 || i >= m || j >= n || board[i][j] != 'O') return;//if not 'O' 退出
             //find the O change to T
             board[i][j] = 'T';
             for(int[] dir : dirs){
