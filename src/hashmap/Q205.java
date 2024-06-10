@@ -1,5 +1,8 @@
 package hashmap;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Q205 {
     public boolean isIsomorphic(String s, String t) {
         //create two arrays to store letters
@@ -20,6 +23,32 @@ public class Q205 {
         }
         return true;
 
+    }
+    //hashmap 方法
+    class Solution {
+        public boolean isIsomorphic(String s, String t) {
+            if (s.length() != t.length()) {
+                return false; // If lengths are not equal, they cannot be isomorphic
+            }
+
+            Map<Character, Integer> mapS = new HashMap<>();
+            Map<Character, Integer> mapT = new HashMap<>();
+
+            for (int i = 0; i < s.length(); i++) {
+                char charS = s.charAt(i);
+                char charT = t.charAt(i);
+
+                // If the current characters don't match the previously recorded indices, return false
+                if (!mapS.getOrDefault(charS, -1).equals(mapT.getOrDefault(charT, -1))) {
+                    return false;
+                }
+
+                // Record the current index (+1 to avoid conflict with default value)
+                mapS.put(charS, i + 1);
+                mapT.put(charT, i + 1);
+            }
+            return true;
+        }
     }
 
 }
