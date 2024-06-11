@@ -4,6 +4,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Q290 {
+    class Solution {
+        public boolean wordPattern(String pattern, String str) {
+            Map<Character, String> map = new HashMap<>();
+
+            String[] words = str.split(" ");
+
+            //错误：if(pattern.length() != str.length()) return false;
+            if(pattern.length() != words.length) return false;
+
+
+            for(int i = 0 ;i < pattern.length(); i++){
+                Character c = pattern.charAt(i);
+                String w = words[i];
+
+                if(map.containsKey(c)){
+                    //错误 if(map.get(keyP) != valueS){
+                    if(!map.get(c).equals(w)){
+                        return false;
+                    }
+                }else{
+                    if(map.containsValue(w)){
+                        return false;//match with other key
+                    }
+                    map.put(c,w);
+                }
+            }
+            return true;
+
+        }
+    }
     public boolean wordPattern(String pattern, String str) {
         String[] words = str.split(" ");//use black to split each words of str
         //judge the length to exclude
