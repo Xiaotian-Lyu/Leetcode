@@ -51,7 +51,7 @@ public class Q290 {
             char c = pattern.charAt(i);
             String w = words[i];
             if (mapForPattern.get(c) != mapForStr.get(w)) {
-                //可以用equals 代替 但是要先排除 是null 的情况
+                //可以用equals 代替 但是要先排除 是null 的情况 先看一下是否contains，再比较value是否相等
                 return false;
             }
             mapForPattern.put(c, i);
