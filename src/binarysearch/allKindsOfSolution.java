@@ -4,7 +4,7 @@ public class allKindsOfSolution {
     /**
      * find the target
      * @param nums
-     * @param target
+     * @param target 找target 可以用闭区间 也可也用开区间 见704
      * @return
      */
     public int binarySearch(int[] nums, int target) {
