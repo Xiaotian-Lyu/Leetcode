@@ -10,6 +10,7 @@ public class Q33 {
             if(nums[mid] == target) return mid;
 
             //最好判断mid 和 right的关系因为 mid = right 只有一种情况就是 到达右边边界
+            //好像是bug 两种这情况 都可以 nums[mid] <= nums[right]
             //nums[left] <= nums[mid]   因为mid 取数需要用到/，在除不尽的这种情况下 会取整到左边的值 会有误区
             if(nums[mid] < nums[right]){
                 //nums[mid] <= nums[mid]
