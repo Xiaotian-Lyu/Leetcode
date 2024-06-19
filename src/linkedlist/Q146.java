@@ -62,7 +62,7 @@ public class Q146 {
                 //add the new node
                 Node newNode = new Node(key, value);
                 map.put(key, newNode);
-                list.addToFront(newNode);
+                list.addTofront(newNode);
             }
 
         }
@@ -81,7 +81,7 @@ public class Q146 {
 
             void removeToFront(Node node) {
                 remove(node);
-                addToFront(node);
+                addTofront(node);
             }
 
             void remove(Node node) {
@@ -97,11 +97,14 @@ public class Q146 {
                 return pre;
             }
 
-            void addToFront(Node node) {//先pre 后 next
-                node.pre = head;
-                node.next = head.next;
-                head.next.pre = node;
+            void addTofront(Node node){
+                //报错的原因大多是因为 在加node 的时候 next点的丢失
+                //可以直接拿个值保存next 再修改指针
+                Node next = head.next;
                 head.next = node;
+                node.pre = head;
+                node.next = next;
+                next.pre = node;
             }
 
         }
