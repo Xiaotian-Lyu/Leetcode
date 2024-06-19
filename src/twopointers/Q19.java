@@ -3,6 +3,34 @@ package twopointers;
 import model.ListNode;
 
 public class Q19 {
+
+    class Solution3 {
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummy = new ListNode();
+            dummy.next = head;
+            ListNode fast = dummy, slow = dummy;
+
+            for(int i = 0; i < n ; i++){
+                fast = fast.next;
+            }
+
+            while(fast.next != null){//stop when fast.next == null
+                slow = slow.next;
+                fast = fast.next;
+            }
+
+            slow.next = slow.next.next;//delete the nth form the end.
+            //错误写法：slow.next = fast;
+            /**
+             slow.next = fast 的作用是将 slow 的下一个节点直接指向 fast 指针当前所在的位置。
+             在这个上下文中，fast 最终会指向链表的最后一个节点，
+             这意味着 slow.next 将被指向链表的最后一个节点，而不是正确删除目标节点。
+             */
+
+            return dummy.next;
+
+        }
+    }
     /**
      * Definition for singly-linked list.
      * public class ListNode {
