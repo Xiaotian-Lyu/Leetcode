@@ -1,6 +1,29 @@
 package binarytree;
 
 public class Q226 {
+    class Solution {
+        public TreeNode invertTree(TreeNode root) {
+            //exit of the recursion
+            if(root == null) return root;//=null
+
+            //swap the children
+            // swapChildren(root);
+            TreeNode temp = root.left;
+            root.left = invertTree(root.right);
+            root.right = invertTree(temp);
+
+            return root;
+        }
+
+        // public void swapChildren(TreeNode root){
+        //在之前已经判断了root ！= null 所有不会报错 root.left 是可以是null的
+        //     TreeNode temp = root.left;
+        //     root.left = root.right;
+        //     root.right = temp;
+
+        // }
+    }
+
     public TreeNode invertTree(TreeNode root) {
         if(root == null){
             return null;
