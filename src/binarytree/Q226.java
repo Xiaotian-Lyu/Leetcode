@@ -2,6 +2,21 @@ package binarytree;
 
 public class Q226 {
     class Solution {
+        class Solution2 {
+            public TreeNode invertTree(TreeNode root) {
+                //最后return 的是root，只需要改变左右子树 就行不需要额外参数 不写另外的function也行
+
+                if(root == null) return root;
+
+                TreeNode temp = root.left;
+                root.left = invertTree(root.right);
+                root.right = invertTree(temp);
+
+                return root;
+
+
+            }
+        }
         public TreeNode invertTree(TreeNode root) {
             //exit of the recursion
             if(root == null) return root;//=null

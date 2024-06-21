@@ -1,6 +1,31 @@
 package binarytree;
 
 public class Q129 {
+    class Solution {
+
+        public int sumNumbers(TreeNode root) {
+
+            return DFS(root, 0);
+        }
+
+        int result = 0;
+
+        public int DFS(TreeNode root, int preval){
+            if(root == null) return 0;
+            preval = preval * 10 + root.val;
+
+            //exit of the recursion
+            if(root.left == null && root.right == null){
+                result += preval;
+            }
+
+            DFS(root.left, preval);
+            DFS(root.right, preval);
+
+            return result;
+
+        }
+    }
     int res = 0;
 
     public int sumNumbers(TreeNode root) {
