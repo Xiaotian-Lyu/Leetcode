@@ -1,6 +1,26 @@
 package binarytree;
 
 public class Q236 {
+    class Solution {
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+            //exclude null
+            if(root == null) return root;
+            //exit of the recursion
+            if(root.val == p.val || root.val == q.val) return root;
+            //if (root == p || root == q) return root;???
+
+            //check the left right sides if find the lowestCommonAncestor
+            TreeNode left = lowestCommonAncestor(root.left,p,q);
+            TreeNode right = lowestCommonAncestor(root.right,p,q);
+
+            //three situation
+            if(left != null && right != null) return root;//p,q in both sides
+            if(left != null && right == null) return left;//p,q in left side
+
+            return right;//p,q in right side
+
+        }
+    }
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         //exit of the recursion
         if(root == null) return root;//null
