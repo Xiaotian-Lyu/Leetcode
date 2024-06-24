@@ -1,12 +1,13 @@
-package binarytree;
+package binarysearchtree;
 
+import binarytree.TreeNode;
 import model.ListNode;
 
 public class Q110 {
     Boolean res = true;// 默认是True
 
     //create a method to know if it is a balanced tree
-    public boolean isBalanced(TreeNode root) {//TreeNode 和 ListNode 区分
+    public boolean isBalanced(binarytree.TreeNode root) {//TreeNode 和 ListNode 区分
         helper(root);
         return res;
     }

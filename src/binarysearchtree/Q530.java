@@ -1,5 +1,6 @@
-package binarytree;
+package binarysearchtree;
 
+import binarytree.TreeNode;
 import com.sun.jdi.Value;
 import com.sun.source.tree.Tree;
 
@@ -8,11 +9,11 @@ public class Q530 {
         //dfs - inorder => small to big
         int result = Integer.MAX_VALUE;
         Integer preValue = null;
-        public int getMinimumDifference(TreeNode root) {
+        public int getMinimumDifference(binarytree.TreeNode root) {
             helper(root);
             return result;
         }
-        public void helper(TreeNode root){
+        public void helper(binarytree.TreeNode root){
             //exit of the recursion
             if(root == null) return;
 
@@ -33,11 +34,11 @@ public class Q530 {
         //dfs - inorder => small to big
         int result = Integer.MAX_VALUE;
         int preValue = Integer.MAX_VALUE;
-        public int getMinimumDifference(TreeNode root) {
+        public int getMinimumDifference(binarytree.TreeNode root) {
             helper(root);
             return result;
         }
-        public void helper(TreeNode root){
+        public void helper(binarytree.TreeNode root){
             //exit of the recursion
             if(root == null) return;
 
@@ -55,7 +56,7 @@ public class Q530 {
     int result = Integer.MAX_VALUE;// finding the minimum, so initialize max value
     int pre = Integer.MAX_VALUE;//a pre the store the last TreeNode
 
-    public int getMinimumDifference(TreeNode root) {
+    public int getMinimumDifference(binarytree.TreeNode root) {
         inOrderTraversal(root);
         return result;
     }

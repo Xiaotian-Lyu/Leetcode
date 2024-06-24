@@ -1,4 +1,6 @@
-package binarytree;
+package binarysearchtree;
+
+import binarytree.TreeNode;
 
 public class Q230 {
     //inorder : left root right
@@ -6,7 +8,7 @@ public class Q230 {
     int count = 0;
     int res = 0;
 
-    public int kthSmallest(TreeNode root, int k) {
+    public int kthSmallest(binarytree.TreeNode root, int k) {
         helper(root,k);
         return res;
     }
