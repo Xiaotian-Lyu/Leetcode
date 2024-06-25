@@ -12,7 +12,7 @@ public class Q257 {
             return result;
         }
 
-        public void helper(TreeNode root, String path){
+        public void helper(TreeNode root, String path){//这里的path 就是和sum 一样 求每条路径的和 从根节点开始向下recursion 把sum 一路传递下去
             if(root == null) return;
             if(root.left == null && root.right == null){
                 result.add(path + root.val);
@@ -20,7 +20,7 @@ public class Q257 {
 
             //left
             if(root.left != null){
-                helper(root.left, path + root.val + "->");
+                helper(root.left, path + root.val + "->");//通过参数的传递把根节点自己 写上去 并且传递下去
             }
 
             //right
