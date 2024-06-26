@@ -1,6 +1,33 @@
 package binarytree;
 
 public class Q124 {
+    class Solution2 {
+        int result = Integer.MIN_VALUE;//-1000 <= Node.val <= 1000
+        public int maxPathSum(TreeNode root) {
+            DFS(root);//DFS 返回的是这个根节点 的最大sum的一条path
+            return result;
+        }
+
+        //DFS - post order - return one side path sum
+        public int DFS(TreeNode root){
+            //exit of the rexursion
+            if(root == null) return 0;
+
+            //left- if this sum is smaller than 0; just do not count that way
+            int left = Math.max(0, DFS(root.left));
+
+            //right
+            int right = Math.max(0, DFS(root.right));
+
+            //reslut
+            result = Math.max(left + right + root.val, result);
+            //update result 我们求的result 在这里不断update
+            //和之前的path sum 不一样的是 之前的sum 需要把自己val 传递下去 直到叶子结点 才能判断是否符合条件
+            //但这一题需要先知道左边path的sum 和 右边 path的sum 才能算出 Max pathsum
+
+            return Math.max(left, right) + root.val;
+        }
+    }
     class Solution {
         int result = Integer.MIN_VALUE;
         public int maxPathSum(TreeNode root) {
