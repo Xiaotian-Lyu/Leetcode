@@ -4,6 +4,36 @@ import binarytree.TreeNode;
 import model.ListNode;
 
 public class Q110 {
+    /**
+     * 更清晰的方式
+     */
+    class Solution3 {
+        boolean result = true;
+        public boolean isBalanced(TreeNode root) {
+            DFS(root);
+            return result;
+        }
+
+        //DFS left right root -> post order -> get the hight
+        public int DFS(TreeNode root){
+            //exit of the recusion
+            if(root == null) return 0;
+
+            //left
+            int left = DFS(root.left);
+
+            //right
+            int right = DFS(root.right);
+
+            //root
+            if(Math.abs(left - right) > 1){//高度差>1 !!
+                result = false;
+            }
+
+            return Math.max(left,right) + 1;
+
+        }
+    }
     class Solution {//这种方式用了两次recursion
         public boolean isBalanced(TreeNode root) {
             if(root == null) return true;
