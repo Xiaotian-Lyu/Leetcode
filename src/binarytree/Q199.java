@@ -1,9 +1,40 @@
 package binarytree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Q199 {
+    /**
+     * 这种写法逻辑更简单
+     */
+    class Solution2 {
+        List<Integer> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        public List<Integer> rightSideView(TreeNode root) {
+            if(root == null) return result;
+
+            queue.add(root);
+
+            while(!queue.isEmpty()){
+                int size = queue.size();
+                for(int i = 0; i < size ;i++){
+                    TreeNode poll = queue.poll();
+                    if(i == size - 1){//check if it the last node of this level
+                        result.add(poll.val);
+                    }
+                    //chekc the next level nodes
+                    if(poll.left != null) queue.add(poll.left);
+                    if(poll.right != null) queue.add(poll.right);
+                }
+            }
+
+            return result;
+
+        }
+    }
     class Solution {
         List<Integer> result = new ArrayList<>();
 
