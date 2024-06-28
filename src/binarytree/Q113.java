@@ -14,24 +14,26 @@ public class Q113 {
         //DFS preoreder - root left right
         public void DFS(TreeNode root, int targetSum, List<Integer> path){
             if(root == null) return;
-
+            //exit of the recursion
             if(root.left == null && root.right == null){//reach to the leaf node
                 path.add(root.val);//add to the path
                 if(root.val == targetSum){//check the root.val
                     result.add(new ArrayList<>(path));
                 }
-                // return; 不能在叶节点处添加 return 会阻止回溯 还没比较完呢 只是这一条比较过了而已
+
+                // return; 也可以在这里return 但是return之前要 把path上刚加的 node remove掉再return
+                // 实际上44 45 行已经写了这个操作了
             }else{
-                //not reach to the leaf node
+                //not reach to the leaf node 就继续往左走往右走
                 path.add(root.val);
                 DFS(root.left, targetSum - root.val, path);
                 DFS(root.right, targetSum - root.val, path);
-
+                //这里没有到叶子结点是不会backtracking的 只有到了叶子结点之后 才会执行44，45
             }
 
             //backtracking
             path.remove(path.size() - 1);
-            return;//这里的return 可加可不加
+            return;//这里的return 可加可不加 因为没有执行 语句了 就自动return了
         }
     }
     /**
