@@ -4,6 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Q113 {
+    class Solution3 {
+        List<List<Integer>> result = new ArrayList<>();
+        public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+            List<Integer> path =  new ArrayList<>();
+            DFS(root, targetSum, path);
+            return result;
+        }
+        //DFS preoreder - root left right
+        public void DFS(TreeNode root, int targetSum, List<Integer> path){
+            if(root == null) return;
+
+            if(root.left == null && root.right == null){//reach to the leaf node
+                path.add(root.val);//add to the path
+                if(root.val == targetSum){//check the root.val
+                    result.add(new ArrayList<>(path));
+                }
+                // return; 不能在叶节点处添加 return 会阻止回溯 还没比较完呢 只是这一条比较过了而已
+            }else{
+                //not reach to the leaf node
+                path.add(root.val);
+                DFS(root.left, targetSum - root.val, path);
+                DFS(root.right, targetSum - root.val, path);
+
+            }
+
+            //backtracking
+            path.remove(path.size() - 1);
+            return;//这里的return 可加可不加
+        }
+    }
     /**
      * 不断更替target value 并 backtracking
      */
