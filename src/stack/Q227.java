@@ -3,6 +3,46 @@ package stack;
 import java.util.Stack;
 
 public class Q227 {
+    class Solution2 {
+        public int calculate(String s) {
+            //Stack -> put all the numbers
+            Stack<Integer> stack = new Stack<>();
+            char sign = '+'; //put the operater default +
+            int number = 0;
+
+            //traversal s
+            for(int i = 0 ; i < s.length(); i++){
+                //get the number
+                char c = s.charAt(i);
+                if(Character.isDigit(c)){
+                    number = c - '0';
+                    //确保在检查下一个字符是否为数字之前检查边界：在 while 循环中，应该先检查 i + 1 < s.length()
+                    //再检查 Character.isDigit(s.charAt(i + 1))，否则在字符串末尾会导致越界错误。
+                    while( i+1 < s.length() && Character.isDigit(s.charAt(i+1))){
+                        number = number * 10 + (s.charAt(i+1)-'0');
+                        i++;
+                    }
+                }
+                //check the sign - not digit or the last char
+                if(!Character.isDigit(c) && c != ' ' || i == s.length() - 1){
+                    switch(sign){//check the sign before update
+                        case'+' -> stack.push(number);
+                        case'-' -> stack.push(-number);
+                        case'*' -> stack.push(stack.pop() * number);
+                        case'/' -> stack.push(stack.pop() / number);
+                    }
+                    sign = c;
+                }
+            }
+
+            //add all numbers in stack
+            int result = 0;
+            while(!stack.isEmpty()){
+                result += stack.pop();
+            }
+            return result;
+        }
+    }
     class Solution {
         public int calculate(String s) {
             //stack -> number ; sign -> default'+' ; number ->full number
