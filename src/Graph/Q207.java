@@ -3,6 +3,59 @@ package Graph;
 import java.util.*;
 
 public class Q207 {
+    class Solution4 {
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            //create the adjacency map: key -> pre course / value -> can take course
+            Map<Integer,Set<Integer>> adjacencyMap = new HashMap<>();
+            // int[] record the numbers of pre course
+            int[] indegree = new int[numCourses];
+
+            //traversal the map to new a hashset
+            for(int i = 0; i < numCourses; i++){
+                adjacencyMap.put(i, new HashSet<>());
+            }
+
+            //translate the prerequisites to adjacencyMap
+            for(int[] prerequisite : prerequisites){
+                int course = prerequisite[0];
+                int preCourse = prerequisite[1];
+                adjacencyMap.get(preCourse).add(course);
+                //update the indegree
+                indegree[course]++;
+            }
+
+            //add all indegree == 0 course to a queue
+            Queue<Integer> queue = new LinkedList<>();
+            // for(int i : indegree){
+            //     if(i == 0){
+            //         queue.add(indegree[i]); 错误写法：queue 里面放的是课程 不是value 课程是index
+            //     }
+            // }
+            for(int i = 0; i < numCourses ; i++){
+                if(indegree[i] == 0){
+                    queue.add(i);
+                }
+
+            }
+
+            //poll course from queue and add recourd the couse numbers
+            int allCourseNum = 0;
+            while(!queue.isEmpty()){
+                int canTakeCourse = queue.poll();
+                allCourseNum++;
+
+                //check the next can take course
+                for(int nextCourse: adjacencyMap.get(canTakeCourse)){
+                    indegree[nextCourse]--;
+                    if(indegree[nextCourse] == 0){
+                        queue.add(nextCourse);
+                    }
+                }
+            }
+
+            return allCourseNum == numCourses;
+        }
+    }
     class Solution3 {
         public boolean canFinish(int numCourses, int[][] prerequisites) {
             //adjacency map - preCourse Course
