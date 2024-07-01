@@ -3,6 +3,64 @@ package Graph;
 import java.util.*;
 
 public class Q210 {
+    class Solution2 {
+        public int[] findOrder(int numCourses, int[][] prerequisites) {
+            //create the adjacencyMap
+            Map<Integer, Set<Integer>> adjacencyMap = new HashMap<>();
+
+            //create indegree array
+            int[] indegree = new int[numCourses];
+
+            //transfer the prerequisites to adjacencyMap
+            for(int i = 0; i < numCourses ; i++){
+                adjacencyMap.put(i, new HashSet<>());
+            }
+            for(int[] prerequisite: prerequisites){
+                int course = prerequisite[0];
+                int preCourse = prerequisite[1];
+                //错误写法：adjacencyMap.get(course).add(preCourse);
+                adjacencyMap.get(preCourse).add(course);
+                //update the indegree
+                indegree[course]++;
+            }
+
+            //check the indegree array - put the indegree = 0 course - into queue
+            Queue<Integer> queue = new LinkedList<>();
+            for(int i = 0; i < numCourses ; i++){
+                if(indegree[i] == 0){
+                    queue.add(i);
+                }
+            }
+
+            //poll the can take course from queue - record to the result
+            //错误写法：List[] result = new ArrayList<>();
+            //要求返回 int[] ！！！
+            int[] result = new int[numCourses];
+            int allFinishedCourse = 0;
+            while(!queue.isEmpty()){
+                int canTakeCourse = queue.poll();
+                //reuslt 是一个int[] 这里就只能index 方式写
+                //刚好利用allFinishedCourse 作为index 增加也是同步的
+                result[allFinishedCourse] = canTakeCourse;
+                allFinishedCourse++;
+
+                //check the next can take course
+                for(int nextCourse : adjacencyMap.get(canTakeCourse)){
+                    indegree[nextCourse]--;
+                    if(indegree[nextCourse] == 0){
+                        queue.add(nextCourse);
+                    }
+                }
+            }
+
+            //return the result
+            //错误 return allFinishedCourse == numCourses ? : result;
+            //Input: numCourses = 1, prerequisites = []
+            //Output: [0]
+            return allFinishedCourse == numCourses ? result : new int[0];
+
+        }
+    }
     class SolutionSelf {
         public int[] findOrder(int numCourses, int[][] prerequisites) {
             //adjacencyMap - course precourse
