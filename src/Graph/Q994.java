@@ -61,7 +61,7 @@ public class Q994 {
             //check if still has good oranges
             // if(goodOranges == 0) return reusltTime；
             //不能把判断时间写在queue 空了之后，因为例题1 第四分钟的时候queue 里面是 有最后坏的橘子的
-            //它需要再进循环找一下附近有没有1 呐会出不了循环吗？？？
+            //它需要再进循环找一下附近有没有1 ，则继续进行下一个for 循环，找到四个方向都没有了 就自动结束
             //这样就导致了结果总是多一分钟
             //goodOranges--之后直接判断是否是0 就返回就行
 
