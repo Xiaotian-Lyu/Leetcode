@@ -15,17 +15,17 @@ public class Q417 {
 
             //DFS the borders cell
             for(int i = 0; i < m ; i++){
-                // DFS(heights, pacificFlow, i , 0 , m , n);
-                // DFS(heights, atlanticFlow, i , m - 1 , m , n);
-                DFS(heights, pacificFlow, i , 0 , m , n);
-                DFS(heights, atlanticFlow, i , n - 1 , m , n);
+                //m 代表行（图的长度，有m行）， n 代表列(index[0]的时候 有几列)
+                //i 代表行，j代表列
+                DFS(heights, pacificFlow, i, 0, m, n);
+                DFS(heights, atlanticFlow, i, n-1, m, n);
             }
 
             for(int j = 0; j < n ; j++){
-                // DFS(heights, pacificFlow, 0 , j , m , n);
-                // DFS(heights, atlanticFlow, m - 1 , j , m , n);
-                DFS(heights, pacificFlow, 0 , j , m , n);
-                DFS(heights, atlanticFlow, m - 1 , j , m , n);
+                //m 代表行（图的长度，有m行）， n 代表列(index[0]的时候 有几列)
+                //i 代表行，j代表列
+                DFS(heights, pacificFlow, 0, j, m, n);
+                DFS(heights, atlanticFlow, m-1, j, m, n);
             }
 
             //check the two boolean int[][] which cell two ocean can both flow
@@ -39,8 +39,6 @@ public class Q417 {
                 }
             }
             return result;
-
-
         }
 
         int[][] directions = {{1,0},{0,1},{-1,0},{0,-1}};
