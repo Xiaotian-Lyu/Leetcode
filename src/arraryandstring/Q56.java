@@ -2,9 +2,38 @@ package arraryandstring;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Q56 {
+    class Solution2 {
+        public int[][] merge(int[][] intervals) {
+            // Step 1: Sort intervals by the starting point
+            Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+            // Step 2: Initialize a list to store merged intervals
+            List<int[]> result = new ArrayList<>();
+
+            // Step 3: Merge intervals
+            for (int[] interval : intervals) {
+                if (result.isEmpty() || result.get(result.size() - 1)[1] < interval[0]) {
+                    // No overlap or first interval
+                    result.add(interval);
+                } else {
+                    // Merge with the last interval in result
+                    result.get(result.size() - 1)[1] = Math.max(result.get(result.size() - 1)[1], interval[1]);
+                }
+            }
+
+            // Convert List<int[]> to int[][]
+            int[][] merged = new int[result.size()][2];
+            for (int i = 0; i < result.size(); i++) {
+                merged[i] = result.get(i);
+            }
+
+            return merged;
+        }
+    }
     class Solution {
         public int[][] merge(int[][] intervals) {
             //sort intervlas 错误写法：Arrays.sort(intervals,(a,b) -> (a[0]b[0]));
