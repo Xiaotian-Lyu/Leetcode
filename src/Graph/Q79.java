@@ -1,6 +1,57 @@
 package Graph;
 
 public class Q79 {
+    class Solution2 {
+        int m , n;
+        boolean[][] visited;//record if visited
+
+        public boolean exist(char[][] board, String word) {
+            //**result， 公共的argument 可以在function 外面定义，
+            //但是需要在 function 里面初始化** `exist` 方法可能会被多次调用，
+            //每次传入不同的 `board`，如果在类中初始化 `m`、`n` 和 `visited`，
+            //这些变量将保留上一次调用的值，导致数据混乱。每次调用 `exist` 方法时，
+            //`m`、`n` 和 `visited` 都应该根据当前的 `board` 动态初始化。
+            m = board.length;
+            n = board[0].length;
+            visited = new boolean[m][n];//record if visited
+
+            //traversal each postion
+            for(int i = 0 ; i < m; i++){
+                for(int j = 0 ; j < n; j++){
+                    //create a new function to do the recursion
+                    if(DFS(board, word, i, j, 0)) return true;
+
+                }
+            }
+
+            return false;
+        }
+
+        //four directions
+        int[][] directions = {{1,0},{0,1},{-1,0},{0,-1}};
+
+        public boolean DFS(char[][] board, String word, int i, int j, int index){
+            //exit of the recursion 错误写法：board[i][j] != word[index]
+            if(i < 0 || i >= m || j < 0 || j >= n || visited[i][j] == true || board[i][j] != word.charAt(index)){
+                return false;
+            }
+            //不能忘记 如果找到了path
+            if(index == word.length() - 1) return true;
+
+            //change the status of postion
+            visited[i][j] = true;
+
+            //DFS for dirction
+            for(int[] dir : directions){
+                if(DFS(board, word, i + dir[0], j + dir[1], index + 1)) return true;
+            }
+
+            //change back
+            visited[i][j] = false;
+
+            return false;
+        }
+    }
     class Solution {
         public boolean exist(char[][] board, String word) {
             //traversal board[i][j]
