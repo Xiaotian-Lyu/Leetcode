@@ -5,16 +5,20 @@ import java.util.List;
 import java.util.Set;
 
 public class Q139 {
-    class Solution3 {
+    class Solution1 {
         public boolean wordBreak(String s, List<String> wordDict) {
-            Set<String> st = new HashSet<>(wordDict);
+            Set<String> hashset = new HashSet<>(wordDict);
+
+            //index = letters numers
             int n = s.length();
             boolean[] f = new boolean[n + 1];
+
+            //不能忘了初始化
             f[0] = true;
 
-            for (int i = 1; i <= n; i++) {
-                for (int j = i - 1; j >= 0; j--) {
-                    if (f[j] && st.contains(s.substring(j, i))) {
+            for(int i = 1; i <= n; i++){
+                for(int j = i - 1; j >=0; j--){//错误j++
+                    if(f[j] && hashset.contains(s.substring(j, i))){
                         f[i] = true;
                         break;
                     }
@@ -45,21 +49,19 @@ public class Q139 {
             return dp[s.length()];//默认是false 但是遍历到那一层了符合条件会改成true
         }
 
-        class Solution2 {
+        class Solution3 {
             public boolean wordBreak(String s, List<String> wordDict) {
-                HashSet<String> set = new HashSet<>(wordDict);
-                boolean[] valid = new boolean[s.length() + 1];
-                valid[0] = true;
-
+                boolean[] dp = new boolean[s.length() + 1];
+                dp[0] = true;
                 for (int i = 1; i <= s.length(); i++) {
-                    for (int j = 0; j < i && !valid[i]; j++) {
-                        if (set.contains(s.substring(j, i)) && valid[j]) {
-                            valid[i] = true;
+                    for (String word : wordDict) {
+                        if (i >= word.length() && dp[i - word.length()] && word.equals(s.substring(i - word.length(), i))) {
+                            dp[i] = true;
+                            break;
                         }
                     }
                 }
-
-                return valid[s.length()];
+                return dp[s.length()];
             }
         }
     }
