@@ -1,6 +1,38 @@
 package bitmanipulation;
 
 public class Q67 {
+    class Solution {
+        public String addBinary(String a, String b) {
+            StringBuilder result = new StringBuilder();
+            int indexA = a.length() - 1;
+            int indexB = b.length() - 1;
+            int carry = 0;
+
+            while(indexA >= 0 || indexB >= 0 || carry > 0){
+                int sum = carry;//错误写法：int sum = 0;
+
+                //sum + A
+                if(indexA >= 0){
+                    sum += a.charAt(indexA) - '0';
+                    indexA--;
+                }
+
+                //sum + B
+                if(indexB >= 0){
+                    sum += b.charAt(indexB) - '0';
+                    indexB--;
+                }
+
+                //get the carry
+                carry = sum / 2;
+
+                //add to result
+                result.append(sum % 2);
+            }
+
+            return result.reverse().toString();
+        }
+    }
     public String addBinary(String a, String b) {
         StringBuilder result = new StringBuilder(); // 用于存储最终结果的StringBuilder
         //用StringBuilder 是因为比String效率更高
