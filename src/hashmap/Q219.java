@@ -4,6 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Q219 {
+    class Solution {
+        public boolean containsNearbyDuplicate(int[] nums, int k) {
+            //use map: key-num value-index
+            Map<Integer, Integer> map = new HashMap<>();
+            for(int i = 0; i < nums.length; i++){
+                //check if contains Key
+                if(map.containsKey(nums[i])){
+                    int index = map.get(nums[i]);
+                    int result = i - index;
+                    if(result <= k) return true;
+                    // }else{
+                    // return false;//当前代码在找到一个不满足距离 k 的重复元素时立即返回 false。
+                    //这是不正确的，因为数组中可能还有其他满足条件的重复元素。
+
+                }
+                //这里改动---- 可以重复比较更新或插入当前元素的索引[1,0,1,1]
+                map.put(nums[i], i);
+            }
+
+            return false;
+        }
+    }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         //a hashmap to store the array values and index
         Map<Integer, Integer> map = new HashMap<>();
