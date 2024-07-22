@@ -15,10 +15,10 @@ public class Q8 {
 
             //check the + or -
             boolean nagative = false;
-            if(i < s.length() && s.charAt(i) == '-'){//这里不能用while loop？
+            if(i < s.length() && s.charAt(i) == '-'){//这里不能用while loop 只需要判断一次
                 nagative = true;
                 i++;
-            }else if (i < s.length() && s.charAt(i) == '+'){//？
+            }else if (i < s.length() && s.charAt(i) == '+'){//有可能是数字，如果直接i++就会跳过数字
                 i++; //不能忘记！！
             }
 
@@ -42,4 +42,5 @@ public class Q8 {
             return (int)result;
         }
     }
+
 }
