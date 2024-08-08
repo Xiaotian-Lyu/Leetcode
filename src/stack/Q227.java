@@ -3,6 +3,46 @@ package stack;
 import java.util.Stack;
 
 public class Q227 {
+    class Solution3{
+        public int calculate(String s) {
+            Stack<Integer> stack = new Stack<>();
+            int num = 0;
+            char sign = '+';
+
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+
+                // 跳过空格
+                if (c == ' ') continue;
+
+                // 处理数字
+                if (Character.isDigit(c)) {
+                    num = num * 10 + (c - '0');
+                    // 如果下一个字符不是数字或者已经到达字符串末尾，执行操作
+                    if (i == s.length() - 1 || !Character.isDigit(s.charAt(i + 1))) {
+                        switch (sign) {
+                            case '+' -> stack.push(num);
+                            case '-' -> stack.push(-num);
+                            case '*' -> stack.push(stack.pop() * num);
+                            case '/' -> stack.push(stack.pop() / num);
+                        }
+                        num = 0;  // 重置 num
+                    }
+                } else {  // 处理符号
+                    sign = c;
+                }
+            }
+
+            // 计算栈中的结果
+            int result = 0;
+            while (!stack.isEmpty()) {
+                result += stack.pop();
+            }
+
+            return result;
+        }
+
+    }
     class Solution2 {
         public int calculate(String s) {
             //Stack -> put all the numbers
