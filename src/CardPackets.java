@@ -27,6 +27,7 @@ public class CardPackets {
     }
 
     public static void main(String[] args) {
+
         int[] cardTypes = {4, 7, 5, 11, 15};
         System.out.println(cardPackets(cardTypes));  // 输出应为4
     }
