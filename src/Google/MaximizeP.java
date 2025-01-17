@@ -1,5 +1,8 @@
 package Google;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MaximizeP {
     public int maximizePoints(int[] points) {
         // write your code here
@@ -9,10 +12,10 @@ public class MaximizeP {
         if (n == 0) return 0;
         if (n == 1) return points[0];
 
-        int[] dp = new int[n + 1];//dp[i]表示从i开始的最大点数
+        int[] dp = new int[n + 1];//dp[i]表示从i开始--到最后之间的最大点数 //空间复杂度O(n)
         dp[n] = 0;
 
-        for(int i = n - 1; i >= 0; i--){
+        for(int i = n - 1; i >= 0; i--){ //时间复杂度O(n)
             int take = points[i];
             if(i + points[i] < n){
                 take += dp[i + points[i] + 1];
@@ -24,20 +27,29 @@ public class MaximizeP {
 
     public int maximizePoints2(int[] points) {
         // write your code here 用recursion
-        return dfs(points, 0);
+        //DFS + Map
+        Map<Integer, Integer> map = new HashMap<>();//map 用来提高效率 //空间复杂度O(n)
+        //由于我们使用了 Map 来存储每个 index 的计算结果（记忆化搜索），每个 index 只会被计算一次。--时间复杂度O(n)
+        return dfs(points, 0, map);//index 是0依赖于后面的，刚好就是可以用recursion逐步完成
     }
 
-    public int dfs(int[] points,int index){
+    public int dfs(int[] points,int index, Map<Integer, Integer> map){
         //exit of the recursion
         if(index >= points.length){
             return 0;
         }
 
-        int notTake = dfs(points, index + 1);
-        int nextIndex = index + points[index] + 1;
-        int takeHere = points[index] + dfs(points, nextIndex);
+        if(map.containsKey(index)){
+            return map.get(index);
+        }
+
+        int notTake = dfs(points, index + 1, map);//取到index，这里是index + 1 因为前面取决于后面
+
+        int nextIndex = index + points[index] + 1;//不取到index
+        int takeHere = points[index] + dfs(points, nextIndex, map);
 
         int max = Math.max(notTake, takeHere);
+        map.putIfAbsent(index, max);//store the index = dp array
         return max;
     }
 

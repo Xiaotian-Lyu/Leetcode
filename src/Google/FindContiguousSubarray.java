@@ -27,9 +27,7 @@ public class FindContiguousSubarray {
                 maxSum = Math.max(maxSum, min + max);
             }
         }
-
         return maxSum;
-
     }
 
     public static void main(String[] args) {
