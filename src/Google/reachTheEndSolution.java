@@ -5,7 +5,7 @@ import java.util.*;
 public class reachTheEndSolution {
     public String reachTheEnd(String[] grid, int maxTime) {
         // write your code here
-        //BFS
+        //BFS - OA
         int m = grid.length, n = grid[0].length();//String[] grid 是一围数组
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{0, 0});//start here

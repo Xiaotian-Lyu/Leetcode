@@ -6,7 +6,15 @@ import java.util.Map;
 public class MaximizeP {
     public int maximizePoints(int[] points) {
         // write your code here
-        //dp 和抢房子不一样
+        //dp 和抢劫房子不一样
+        /**
+         * Input:  points = [25, 1, 3, 99, 4]
+         * Output: 100
+         * Explanation:Take 1 and 99, the solution is 100.
+         * Given an array, each value at each index represents points.
+         * If you "take" the points at value v, you can't take the points in the next v indices.
+         * Maximize the amount of points you can take.
+         */
         int n = points.length;
 
         if (n == 0) return 0;

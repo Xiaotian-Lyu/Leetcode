@@ -34,6 +34,7 @@ public class GoldenArray {
 
     public boolean canBeTriplets(int[] remaining){
         //check if can be Triplets
+        //打麻将：一个两对， 多个三对
         int count = 0;
 
         for(int i = 0; i < 101; i++){

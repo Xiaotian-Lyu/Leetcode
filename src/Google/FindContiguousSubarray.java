@@ -2,6 +2,12 @@ package Google;
 
 public class FindContiguousSubarray {
     public int findContiguousSubarrayWithLargestMinPlusMax(int[] nums) {
+        /**
+         *Input:  nums = [4, 6, 2, 8, 10]
+         * Output: 18
+         * Explanation:The contiguous subarray with the largest min + max is [8, 10], where the min is 8 and the max is 10.
+         *       Therefore, the answer is 10 + 8 = 18.
+         */
         // write your code here
         // sliding window more like sliding window
         // int left = 0;
@@ -18,6 +24,7 @@ public class FindContiguousSubarray {
         int maxSum = -1;
         for(int left = 0; left < nums.length - 1; left++){
             //begin
+            //错误写法：// int left = nums[i];并没有维护一个最小值 和 最大值只是一直和left比较
             int min = nums[left];
             int max = nums[left];
             for(int right = left + 1; right < nums.length; right++){// left + 1

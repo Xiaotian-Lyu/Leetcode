@@ -3,6 +3,7 @@ package Google;
 class OptimalInputFinder{
     public int findOptimalInput(int targetTime) {
         // write your code here
+        //微波炉
         int minTarget = (int)(targetTime * 0.9);
         int maxTarget = (int)(targetTime * 1.1);
 
