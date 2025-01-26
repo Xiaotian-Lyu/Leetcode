@@ -73,6 +73,23 @@ public class FindMaximumFrequencyofNumberSolution {
         return res;
     }
 
+
+    public int findMaximumFrequency5(int[] nums){
+        int maxCount = 0;
+        int count = 1;//一开始算上自己
+        //[1,2,2,3,3,3,3,4,4,5,6]
+        for(int i = 0; i < nums.length; i++){
+            if(i > 0 && nums[i] == nums[i - 1]){
+                count++;
+            }else{
+                count = 1;//reset
+            }
+
+            maxCount = Math.max(count,maxCount);
+        }
+        return maxCount;
+    }
+
     public static void main(String[] args){
         FindMaximumFrequencyofNumberSolution test1 = new FindMaximumFrequencyofNumberSolution();
         int[] n1 = new int[]{1,2,2,3,3,3,3,4,4,5,6};
@@ -93,6 +110,10 @@ public class FindMaximumFrequencyofNumberSolution {
         System.out.println(test1.findMaximumFrequency4(n1));
         System.out.println(test1.findMaximumFrequency4(n2));
         System.out.println(test1.findMaximumFrequency4(n3));
+
+        System.out.println(test1.findMaximumFrequency5(n1));
+        System.out.println(test1.findMaximumFrequency5(n2));
+        System.out.println(test1.findMaximumFrequency5(n3));
     }
 
 }
