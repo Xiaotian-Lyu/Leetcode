@@ -51,9 +51,11 @@ public class FindMaximumFrequencyofNumberSolution {
         int fre = 0;
         for(int right = 0; right < nums.length; right++){
             while(nums[right] != nums[left]){//not same number - left
+                //  不符合条件
                 fre--;
                 left++;
             }
+            //出了while循环就属于符合条件
             fre++;
             res = Math.max(res, fre);
         }

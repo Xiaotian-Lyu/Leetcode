@@ -3,6 +3,7 @@ package Google;
 public class GoldenArray {
     public boolean canFormPairAndTriplets(int[] nums) {
         // 假设数字范围是 1-100
+        //{2, 2, 2, 3, 4, 5, 6, 6} 打麻将：一个两对， 多个三对
         int[] freq = new int[101]; // 数组替代 Map
 
         // 统计频率
@@ -34,6 +35,8 @@ public class GoldenArray {
 
     public boolean canBeTriplets(int[] remaining){
         //check if can be Triplets
+        //“三同”对数字分布的约束更小，具有更强的普适性。
+        //大多数情况下，“三同”优先能更快缩小数字池，减少复杂性。
         //打麻将：一个两对， 多个三对
         int count = 0;
 

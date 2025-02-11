@@ -71,14 +71,69 @@ public class LongestNonDecreasingSubarrayPart2Solution {
     public boolean helper(int[] arr, int left, int right){
         int count = 0;
         for(int i = left; i <= right; i++){
-            if(count == 0 && i + 1 <= right && arr[i] > arr[i + 1]){
-                count += 1;//change one number
-            }else if(count > 0 && i + 1 <= right && arr[i] > arr[i + 1]){
-                return false;
-            }
+//            if(count == 0 && i + 1 <= right && arr[i] > arr[i + 1]){//两者都可以- 只要确保不越界
+//                count += 1;//change one number
+//            }else if(count > 0 && i + 1 <= right && arr[i] > arr[i + 1]){
+//                return false;
+//            }
+              if(count == 0 && i > left && arr[i] < arr[i - 1]){//两者都可以- 只要确保不越界
+                  count += 1;
+              } else if (count == 1 && i > left && arr[i] < arr[i - 1]) {
+                  return false;
+              }
         }
         return true;//Non-Decreasing
     }
+//
+//    public int longestSubarray(int[] nums){
+//        int left = 0;
+//        int change = 0;
+//        int res = 0;
+//        for(int right = 0; right < nums.length; right++){
+//            if(right > 0 && nums[right] < nums[right - 1]){
+//                //not leagal
+//                if(change == 0){
+//                    change += 1;
+//                }else{
+//                    //change = 1
+//                    while (nums[right] < nums[right - 1] && left < right) {
+//                        left++;
+//                    }
+//                    left = right;//restart
+//                    change = 0;//reset
+//                }
+//            }
+//            res = Math.max(res, right - left + 1);
+//        }
+//        return res;
+//    }
+
+
+//    public int longestSubarray2(int[] nums) {
+//        int left = 0; // 窗口左边界
+//        int change = 0; // 是否已经使用了一次修改
+//        int res = 0; // 结果：最长非递减子数组长度
+//
+//        for (int right = 0; right < nums.length; right++) {
+//            if (right > 0 && nums[right] < nums[right - 1]) {
+//                if (change == 0) {
+//                    // 如果未修改过，允许修改
+//                    change = 1;
+//                } else {
+//                    // 如果已经修改过，缩小窗口，直到合法
+//                    while (nums[right] < nums[right - 1] && left < right) {
+//                        left++;
+//                    }
+//                    change = 0; // 重置修改机会
+//                }
+//            }
+//            // 更新结果
+//            res = Math.max(res, right - left + 1);
+//        }
+//        return res;
+//    }
+
+
 
     public static void main(String[] args) {
         LongestNonDecreasingSubarrayPart2Solution test = new LongestNonDecreasingSubarrayPart2Solution();
@@ -87,14 +142,21 @@ public class LongestNonDecreasingSubarrayPart2Solution {
         int[] nums2 = new int[]{2, 1, 3, 4, 1, 5, 6, 7, 8, 9};
 
         System.out.println(test.longestNonDecreasingSubarray1(nums));
+//        System.out.println(test.longestSubarray(nums));
 //        System.out.println(test.longestNonDecreasingSubarray2(nums));
 //        System.out.println(test.longestNonDecreasingSubarray3(nums));
 
         System.out.println(test.longestNonDecreasingSubarray1(nums1));
+//        System.out.println(test.longestSubarray(nums1));
+//        System.out.println(test.longestSubarray2(nums1));
+
 //        System.out.println(test.longestNonDecreasingSubarray2(nums1));
 //        System.out.println(test.longestNonDecreasingSubarray3(nums1));
 
         System.out.println(test.longestNonDecreasingSubarray1(nums2));
+//        System.out.println(test.longestSubarray(nums2));
+//        System.out.println(test.longestSubarray2(nums2));
+
 //        System.out.println(test.longestNonDecreasingSubarray2(nums2));
 //        System.out.println(test.longestNonDecreasingSubarray3(nums2));
     }
