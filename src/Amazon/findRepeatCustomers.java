@@ -43,15 +43,40 @@ public class findRepeatCustomers {
 
             map.putIfAbsent(customer, new HashSet<>());
             map.get(customer).add(time);
-            if(map.get(customer).size() >= n){//?
+            if(map.get(customer).size() >= n){//customer在n及以上
                 res.add(customer);
             }
+
+            //distinct day visited(一天内重复登录算一次) - Map<String,Set<String>>
 
 //            if(map.containsKey(customer) && !map.get(customer).equals(time)){
 //                res.add(customer);
 //            }else{
 //                map.put(customer, time);
 //            }
+        }
+        return res;
+    }
+
+    public Set<String> customer3(List<String> log, int n){
+        Set<String> res = new HashSet<>();
+        Map<String,Map<String, Set<String>>> map = new HashMap<>();
+        for(String s : log){
+            String[] logC = s.split(" ");
+            String customer = logC[0];
+            String day = logC[1];//day
+            String time = logC[2];//time
+
+            map.putIfAbsent(customer, new HashMap<>());//初始化外层！！！！！
+            map.get(customer).putIfAbsent(day,new HashSet<>());//初始化内层！！！！！
+
+            map.get(customer).get(day).add(time);
+            if(map.get(customer).size() >= n){//这样是算几天登录过
+                // distinct day visited(一天内重复登录算一次) - Map<String,Set<String>>
+                //if(map.get(customer).get(day).size() >= n) 错误写法 这样是算一天内登录几次
+                res.add(customer);
+            }
+
         }
         return res;
     }
